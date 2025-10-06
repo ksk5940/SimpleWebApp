@@ -1,4 +1,4 @@
-package main.java.com.example.web;
+package com.example.web;
 import java.util.HashMap;
 import java.util.Map;
 
