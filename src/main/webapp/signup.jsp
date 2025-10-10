@@ -7,7 +7,6 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            /* Light blue background for a calm feel */
             background: #f0f8ff;
             height: 100vh;
             display: flex;
@@ -20,7 +19,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             background-color: white;
-            border-left: 5px solid #17a2b8; /* Subtle feature border */
+            border-left: 5px solid #17a2b8;
             animation: slideIn 0.8s ease-out;
         }
         h3 {
@@ -49,6 +48,19 @@
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        /* NEW FOOTER STYLE */
+        .version-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            text-align: center;
+            font-size: 0.75rem;
+            z-index: 1000;
         }
     </style>
 </head>
@@ -86,5 +98,9 @@
             <a href="index.jsp" class="text-decoration-none text-muted mt-2 d-block">← Main Menu</a>
         </div>
     </div>
+
+    <footer class="version-footer">
+        Application Version: <%= application.getInitParameter("app.version") %>
+    </footer>
 </body>
 </html>

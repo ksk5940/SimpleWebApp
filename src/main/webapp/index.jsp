@@ -7,7 +7,6 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            /* Darker, more professional gradient */
             background: linear-gradient(135deg, #6dd5fa 0%, #2980b9 100%);
             height: 100vh;
             display: flex;
@@ -17,7 +16,6 @@
         .card {
             padding: 40px;
             border-radius: 20px;
-            /* Stronger, more appealing shadow */
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
             text-align: center;
             background-color: white;
@@ -31,14 +29,14 @@
         }
         .btn {
             margin: 10px 15px;
-            border-radius: 50px; /* Pill-shaped buttons */
+            border-radius: 50px;
             padding: 10px 40px;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         .btn:hover {
-            transform: translateY(-3px) scale(1.02); /* Lift and scale effect */
+            transform: translateY(-3px) scale(1.02);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
         .btn-primary {
@@ -53,6 +51,19 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        /* NEW FOOTER STYLE */
+        .version-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px;
+            background-color: rgba(0, 0, 0, 0.6); 
+            color: white;
+            text-align: center;
+            font-size: 0.75rem;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -60,7 +71,7 @@
         <h2 class="mb-4">Welcome to SimpleWebApp</h2>
         
         <% 
-            // Check if the 'user' object is in the session (assuming your LoginServlet sets this)
+            // Check if the 'user' array is in the session
             if (session.getAttribute("user") != null) {
         %>
             <p class="lead text-success">You are currently logged in!</p>
@@ -78,5 +89,9 @@
         %>
         
     </div>
+    
+    <footer class="version-footer">
+        Application Version: <%= application.getInitParameter("app.version") %>
+    </footer>
 </body>
 </html>

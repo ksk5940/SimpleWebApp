@@ -7,7 +7,6 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            /* Simple, elegant light background */
             background: #f8f9fa;
             height: 100vh;
             display: flex;
@@ -20,7 +19,6 @@
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             background-color: white;
-            /* Modern, colorful border effect */
             border: 1px solid transparent;
             background-image: linear-gradient(white, white), 
                               linear-gradient(to right, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -56,6 +54,19 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        /* NEW FOOTER STYLE */
+        .version-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px;
+            background-color: rgba(0, 0, 0, 0.6); 
+            color: white;
+            text-align: center;
+            font-size: 0.75rem;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -84,5 +95,9 @@
             <a href="index.jsp" class="text-decoration-none text-muted mt-2 d-block">← Main Menu</a>
         </div>
     </div>
+ 
+    <footer class="version-footer">
+        Application Version: <%= application.getInitParameter("app.version") %>
+    </footer>
 </body>
 </html>

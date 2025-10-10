@@ -3,14 +3,11 @@
     // 1. Check for logged-in user
     Object userObj = session.getAttribute("user");
     if (userObj == null) {
-        // If not logged in, send them away
         response.sendRedirect("login.jsp?error=notloggedin");
         return;
     }
     
     // 2. Cast the session object to a String array (String[])
-    //    We use String[] because LoginServlet stores {name, email} this way.
-    //    Format: userArray[0] = name, userArray[1] = email
     String[] userArray = (String[]) userObj; 
     
     // 3. Extract the details
@@ -25,7 +22,6 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            /* Professional blue gradient */
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             height: 100vh;
             display: flex;
@@ -36,7 +32,7 @@
             width: 450px;
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5); /* Strong shadow for depth */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             background-color: white;
             text-align: center;
             animation: fadeIn 0.8s ease-out;
@@ -73,6 +69,19 @@
             from { opacity: 0; transform: scale(0.9); }
             to { opacity: 1; transform: scale(1); }
         }
+        /* NEW FOOTER STYLE */
+        .version-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            text-align: center;
+            font-size: 0.75rem;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -92,5 +101,9 @@
         
         <a href="index.jsp" class="text-decoration-none text-muted mt-3 d-block">← Back to Main Menu</a>
     </div>
+    
+    <footer class="version-footer">
+        Application Version: <%= application.getInitParameter("app.version") %>
+    </footer>
 </body>
 </html>
