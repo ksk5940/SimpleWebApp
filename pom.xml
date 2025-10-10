@@ -19,9 +19,9 @@
 
     <!-- SonarQube -->
     <sonar.projectKey>com.example:SimpleWebApp</sonar.projectKey>
-    <sonar.host.url>http://localhost:9000</sonar.host.url>
-    <sonar.login>admin</sonar.login>
-		<sonar.password>admin123</sonar.password> 
+    <sonar.host.url>http://192.168.0.141:8082/</sonar.host.url>
+    <sonar.login>squ_28456edc06de000fc19e92c385446b318af1f242</sonar.login>
+	<!--<sonar.password>admin123</sonar.password> -->
   </properties>
 
   <dependencies>
@@ -71,12 +71,12 @@
 
   <distributionManagement>
     <repository>
-      <id>nexus-releases</id>
-      <url>http://localhost:8081/repository/maven-releases/</url>
+      <id>nexus</id>
+      <url>http://192.168.0.141:8081/repository/SimpleWebApp-release/</url>
     </repository>
     <snapshotRepository>
-      <id>nexus-snapshots</id>
-      <url>http://localhost:8081/repository/maven-snapshots/</url>
+      <id>nexus</id>
+      <url>http://192.168.0.141:8081/repository/SimpleWebApp-snapshot/</url>
     </snapshotRepository>
   </distributionManagement>
 </project>
