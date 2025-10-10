@@ -9,7 +9,7 @@
     }
     
     // 2. Cast the session object to a String array (String[])
-    [cite_start]//    We use String[] because LoginServlet stores {name, email} this way[cite: 1].
+    //    We use String[] because LoginServlet stores {name, email} this way.
     //    Format: userArray[0] = name, userArray[1] = email
     String[] userArray = (String[]) userObj; 
     
