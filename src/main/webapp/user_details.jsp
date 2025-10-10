@@ -1,17 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.example.model.User" %> <%-- **IMPORTANT: Replace with your actual User class import** --%>
 <% 
     // 1. Check for logged-in user
     Object userObj = session.getAttribute("user");
     if (userObj == null) {
-        // If not logged in, redirect to login page
+        // If not logged in, send them away
         response.sendRedirect("login.jsp?error=notloggedin");
         return;
     }
     
-    // 2. Cast the session object to your User class
-    // ASSUMPTION: Your LoginServlet successfully put a User object into the session.
-    User user = (User) userObj; 
+    // 2. Cast the session object to a String array (String[])
+    //    We use String[] because LoginServlet stores {name, email} this way.
+    String[] userArray = (String[]) userObj; 
+    
+    // 3. Extract the details: Index 0 is Name, Index 1 is Email
+    String name = userArray[0]; 
+    String email = userArray[1]; 
 %>
 <html>
 <head>
@@ -49,6 +52,9 @@
             border-radius: 10px;
             font-weight: 600;
         }
+        .btn-secondary {
+            border-radius: 10px;
+        }
         @keyframes scaleIn {
             from { opacity: 0; transform: scale(0.9); }
             to { opacity: 1; transform: scale(1); }
@@ -57,23 +63,20 @@
 </head>
 <body>
     <div class="card">
-        <h2 class="text-primary mb-4">Welcome, <%= user.getName() %>!</h2>
+        <h2 class="text-primary mb-4">Welcome, <%= name %>!</h2>
         
         <div class="detail-row">
-            <strong>Name:</strong> <%= user.getName() %>
+            <strong>Name:</strong> <%= name %>
         </div>
         <div class="detail-row">
-            <strong>Email:</strong> <%= user.getEmail() %>
-        </div>
-        <div class="detail-row">
-            <strong>User ID:</strong> <%= user.getId() %> 
+            <strong>Email:</strong> <%= email %>
         </div>
         
         <hr class="mt-4">
         
         <a href="logout" class="btn btn-danger w-100 mb-3">Logout</a>
         
-        <a href="index.jsp" class="text-decoration-none text-muted">← Back to Main Menu</a>
+        <a href="index.jsp" class="btn btn-secondary mt-3">← Back to Main Menu</a>
     </div>
 </body>
 </html>

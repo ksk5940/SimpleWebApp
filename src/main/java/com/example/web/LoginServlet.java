@@ -12,31 +12,32 @@ import javax.servlet.http.HttpSession; // New Import
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        String email = req.getParameter("email"); // [cite: 9]
+        String email = req.getParameter("email");
         String password = req.getParameter("password");
 
-        if (UserStore.validate(email, password)) { // [cite: 10]
-            String name = UserStore.getUser(email)[0]; // [cite: 11]
+        if (UserStore.validate(email, password)) {
+            // Retrieve name from UserStore.java
+            String name = UserStore.getUser(email)[0];
             
             // --- FIX: Change from forwarding to session management and redirect ---
             
-            // 1. Create a simple User model object to store in session
-            //    Using String[] {name, email} to fit your UserStore implementation
+            // 1. Create a String array to hold user data (name and email) 
+            //    to match your UserStore implementation.
             String[] userModel = new String[]{name, email}; 
 
-            // 2. Get the session
+            // 2. Get the session (or create a new one)
             HttpSession session = req.getSession();
             
-            // 3. Set the user object in the session
+            // 3. Set the user array into the session under the key "user".
             session.setAttribute("user", userModel);
             
-            // 4. Redirect to the session-based user details page
+            // 4. Redirect to the session-based user details page.
             res.sendRedirect("user_details.jsp");
             
             // --- FIX END ---
             
         } else {
-            // Original error handling for invalid credentials
+            // Redirect back to login page with an error parameter
             res.sendRedirect("login.jsp?error=true");
         }
     }
